@@ -1,1 +1,57 @@
-<!DOCTYPE html><html><body><h1>KKL Web Root</h1><p>Main file: k_kisekae2.swf</p></body></html>
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Kisekae Local (KKL) - Ruffle Player</title>
+    <style>
+        body { 
+            background-color: #f0f0f0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+            font-family: sans-serif;
+        }
+        #ruffle-player {
+            width: 800px;
+            height: 600px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: #000;
+        }
+        .info { margin-top: 15px; color: #555; }
+    </style>
+    <!-- 2. Ruffle CDN -->
+    <script src='https://unpkg.com/@ruffle-rs/ruffle'></script>
+</head>
+<body>
+    <!-- 3. Player Container -->
+    <div id='ruffle-player'></div>
+    <div class='info'>KKL v107 Alpha 3 - Emulated via Ruffle</div>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("ruffle-player");
+            container.appendChild(player);
+            
+            // 4 & 5. Configure and Load SWF
+            player.load({
+                url: "k_kisekae2.swf",
+                allowScriptAccess: true,
+                base: ".",
+                parameters: "",
+                autoplay: "on",
+                unmuteOverlay: "hidden"
+            });
+            
+            player.style.width = "800px";
+            player.style.height = "600px";
+        });
+    </script>
+</body>
+</html>
